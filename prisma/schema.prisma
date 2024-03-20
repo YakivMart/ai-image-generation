@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Info {
+  id                      Int      @id @default(autoincrement())
+  wallet_address          String   @unique
+  free_image_amount       Int?
+  paid_image_amount       Int?
+  free_chat_time          Int?
+  paid_chat_time          Int?
+  expire_date             DateTime? @default(now())
+}
